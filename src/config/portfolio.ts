@@ -1,0 +1,113 @@
+// Portfolio Configuration - FAANG Level Architecture
+export const portfolioConfig = {
+  personal: {
+    name: 'Adithya S',
+    title: 'Data Analyst | Full Stack Developer',
+    email: 'adithyain03@gmail.com',
+    phone: '+91 7029329256',
+    location: 'VIT Bhopal University',
+    graduation: 'September 2026',
+    image: '/new_pfp.webp',
+    resumeUrl: '/Resume_adi.pdf', // Your resume in public folder
+  },
+  
+  social: {
+    linkedin: 'https://linkedin.com/in/adithya-s07',
+    github: 'https://github.com/Adimon03',
+    leetcode: 'https://leetcode.com/u/AdithyaaaS_007',
+  },
+  
+  seo: {
+    title: 'Adithya S - Full Stack Developer & Data Analyst Portfolio',
+    description: 'Computer Science student specializing in Full Stack Development, Data Analytics, and Cybersecurity. View my projects, certifications, and experience.',
+    keywords: 'Full Stack Developer, Data Analyst, Computer Science, React, Python, Portfolio, Adithya S',
+    ogImage: '/AI 2.webp',
+    twitterHandle: '@adithya', // Update with your Twitter handle
+  },
+  
+  about: {
+    intro: "Hello! I'm Adithya S, a final-year Computer Science and Engineering student at VIT Bhopal University. My passion lies in combining technology, analytics, and design to build smarter, user-centered systems.",
+    description: "I enjoy working on data visualization, full-stack development, and cyber-secure solutions that create real-world impact. I'm constantly learning and adapting to new technologies to stay ahead in this ever-evolving field.",
+  },
+  
+  experience: [
+    {
+      title: 'Virtual Intern',
+      company: 'Deloitte',
+      description: 'Data Analysis with Tableau',
+      period: '2024',
+    },
+    {
+      title: 'Virtual Intern',
+      company: 'Infosys Springboard',
+      description: 'Python Technology',
+      period: '2024',
+    },
+  ],
+  
+  skills: {
+    programming: ['Python', 'SQL', 'C/C++', 'JavaScript', 'Java', 'HTML/CSS'],
+    tools: ['Power BI', 'Tableau', 'MongoDB', 'MySQL', 'Git', 'AWS', 'Google Cloud'],
+    core: ['Data Structures', 'Algorithms', 'Cybersecurity', 'OOP', 'System Design', 'Computer Networks', 'DBMS'],
+  },
+  
+  certifications: [
+    {
+      title: 'IBM Cyber Security Analyst',
+      issuer: 'IBM',
+      icon: '🛡️',
+      link: 'https://courses.ibmcep.cognitiveclass.ai/certificates/a0d4726739d142d5af78d69d48abb7d2',
+    },
+    {
+      title: 'Japanese N4 Course',
+      issuer: 'Udemy',
+      icon: '🇯🇵',
+      link: 'https://www.udemy.com/certificate/UC-7e6172e7-3308-416b-8f0a-ada568d4495e/',
+    },
+    {
+      title: 'MERN Full Stack Developer',
+      issuer: 'Ethnus',
+      icon: '💻',
+      link: 'https://drive.google.com/file/d/1uXFNAqu1V8OpptElWxFykwUJRZYhyhl8/view?usp=sharing',
+    },
+    {
+      title: 'OCI 2025 Certified Generative AI Professional',
+      issuer: 'Oracle',
+      icon: '🤖',
+      link: 'https://drive.google.com/file/d/15L6DJiu-oAtdgz6HGRC7qDdLn4D-zBQx/view?usp=sharing',
+    },
+    {
+      title: 'Foundations of Cybersecurity',
+      issuer: 'Google',
+      icon: '🔒',
+      link: 'https://www.coursera.org/account/accomplishments/verify/XMQ5D92DUA3T',
+    },
+  ],
+  
+  projects: [
+    {
+      title: 'Customer Trends Data Analysis',
+      tags: ['Power BI', 'SQL', 'Python'],
+      description: [
+        'Built a complete data pipeline analyzing shopping behavior',
+        'Created Power BI dashboards that identified key sales drivers',
+        'Optimized SQL queries to reveal actionable marketing insights',
+      ],
+      link: 'https://github.com/Adimon03/customer-trends-data-analysis-SQL-Python-PowerBI/tree/main/customer-trends-data-analysis-SQL-Python-PowerBI',
+      image: '/bg-data-analytics.jpg',
+    },
+    {
+      title: 'AI Voice Assistant',
+      tags: ['VAPI', 'HTML', 'CSS', 'JavaScript', 'Python'],
+      description: [
+        'Developed real-time voice recognition and call summary system',
+        'Created REST API for React front-end and Python backend sync',
+        'Improved debugging speed and workflow clarity by 18%',
+      ],
+      link: 'https://github.com/Adimon03/AI-VOICE-assistant-/tree/main/AI%20VOICE%20ASSISTANT%20PROJECT/VAPI-AI-Voice-Assistant',
+      image: '/AI 2 copy.webp',
+    },
+  ],
+} as const;
+
+export type PortfolioConfig = typeof portfolioConfig;

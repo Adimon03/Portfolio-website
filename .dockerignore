@@ -1,0 +1,17 @@
+node_modules
+dist
+.git
+.gitignore
+.env
+.env.local
+.env.production
+README.md
+DEPLOYMENT.md
+SETUP.md
+FIXES_APPLIED.md
+*.log
+.vscode
+.idea
+.DS_Store
+coverage
+.cache
