@@ -74,11 +74,12 @@ const Navbar = () => {
               <button
                 key={index}
                 onClick={() => item.action ? item.action() : scrollToSection(item.id!)}
-                className={`text-gray-300 hover:text-white transition-colors duration-200 font-medium ${
+                className={`relative text-gray-300 hover:text-white hover:scale-110 transition-all duration-300 font-medium group ${
                   index === 0 ? 'text-orange-500' : ''
                 }`}
               >
                 {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300 ease-out"></span>
               </button>
             ))}
             <ThemeToggle />
@@ -113,7 +114,7 @@ const Navbar = () => {
               <button
                 key={index}
                 onClick={() => item.action ? item.action() : scrollToSection(item.id!)}
-                className="block w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors duration-200"
+                className="block w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 hover:translate-x-2 hover:scale-105 rounded-md transition-all duration-300"
               >
                 {item.label}
               </button>
