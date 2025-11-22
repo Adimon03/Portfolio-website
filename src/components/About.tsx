@@ -53,7 +53,7 @@ const About = () => {
     <section 
       id="about" 
       ref={sectionRef} 
-      className="py-20 px-4 min-h-screen flex items-center bg-white"
+      className="py-20 px-4 min-h-screen flex items-center bg-gray-50/30 dark:bg-gray-700 transition-colors duration-500"
       aria-label="About section"
       style={{
         transform: `perspective(1200px) rotateX(${scroll3D.rotateX}deg) scale(${scroll3D.scale})`,
@@ -62,22 +62,22 @@ const About = () => {
       }}
     >
       <div className={`max-w-6xl mx-auto w-full ${isVisible ? 'visible' : ''}`}>
-        <h2 className={`text-5xl font-bold text-gray-900 text-center mb-16 stagger-item ${isVisible ? 'visible' : ''}`}>
+        <h2 className={`text-5xl font-bold text-gray-900 dark:text-white text-center mb-16 stagger-item ${isVisible ? 'visible' : ''}`}>
           About <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Me</span>
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className={`stagger-item ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '200ms' }}>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+            <p className="text-lg text-gray-600 dark:text-gray-200 leading-relaxed mb-6">
               {portfolioConfig.about.intro}
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-lg text-gray-600 dark:text-gray-200 leading-relaxed">
               {portfolioConfig.about.description}
             </p>
           </div>
 
           <div className={`space-y-6 stagger-item ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '400ms' }}>
-            <div className="p-6 rounded-2xl bg-white shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
+            <div className="p-6 rounded-2xl bg-white shadow-xl border border-gray-100 dark:border-gray-600 hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-gradient-to-br from-orange-100 to-red-100 rounded-xl">
                   <GraduationCap className="w-6 h-6 text-orange-500" aria-hidden="true" />
@@ -91,7 +91,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white shadow-xl border border-gray-100 hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
+            <div className="p-6 rounded-2xl bg-white shadow-xl border border-gray-100 dark:border-gray-600 hover:shadow-2xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-gradient-to-br from-orange-100 to-red-100 rounded-xl">
                   <Briefcase className="w-6 h-6 text-orange-500" aria-hidden="true" />

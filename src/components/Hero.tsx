@@ -7,10 +7,59 @@ import { useScroll3D } from '../hooks/useScroll3D';
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const scroll3D = useScroll3D('hero');
+  const [titleHovered, setTitleHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setTimeout(() => setIsVisible(true), 200);
   }, []);
+
+  const [imageHovered, setImageHovered] = useState(false);
+  const [imageMousePos, setImageMousePos] = useState({ x: 0, y: 0 });
+
+  const handleTitleMouseMove = (e: React.MouseEvent<HTMLHeadingElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePos({ x, y });
+  };
+
+  const handleImageMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setImageMousePos({ x, y });
+  };
+
+  const getTitleTransform = () => {
+    if (!titleHovered) return 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    
+    const titleElement = document.querySelector('.hero-title');
+    if (!titleElement) return 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    
+    const rect = titleElement.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((mousePos.y - centerY) / centerY) * -10;
+    const rotateY = ((mousePos.x - centerX) / centerX) * 10;
+    
+    return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  };
+
+  const getImageTransform = () => {
+    if (!imageHovered) return 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    
+    const imageElement = document.querySelector('.hero-image-container');
+    if (!imageElement) return 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    
+    const rect = imageElement.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((imageMousePos.y - centerY) / centerY) * -15;
+    const rotateY = ((imageMousePos.x - centerX) / centerX) * 15;
+    
+    return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+  };
 
   const scrollToSection = (id: string) => {
     trackButtonClick(`scroll-to-${id}`);
@@ -32,7 +81,7 @@ const Hero = () => {
   return (
     <section 
       id="hero"
-      className="min-h-screen flex items-center justify-center px-4 py-24 bg-gradient-to-br from-gray-50 via-orange-50 to-red-50 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center px-4 py-24 bg-gradient-to-br from-gray-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden transition-colors duration-500"
       aria-label="Hero section"
       style={{
         transform: `perspective(1200px) rotateX(${scroll3D.rotateX}deg) scale(${scroll3D.scale})`,
@@ -49,15 +98,25 @@ const Hero = () => {
         {/* Left Side - Content */}
         <div className="space-y-6">
           <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            <p className="text-gray-600 text-lg mb-2">Hello! I'm</p>
-            <h1 className="text-orange-500 text-2xl md:text-3xl font-bold mb-4">
+            <p className="text-gray-600 dark:text-gray-300 text-lg mb-2">Hello! I'm</p>
+            <h1 className="text-orange-500 dark:text-orange-400 text-2xl md:text-3xl font-bold mb-4">
               {portfolioConfig.personal.name}
             </h1>
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
-              <span className="inline-block hover:scale-110 transition-transform duration-300">Data Analyst</span> &<br />
-              <span className="inline-block hover:scale-110 transition-transform duration-300">Full Stack Developer</span>
+            <h2 
+              className="hero-title text-4xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6 cursor-default"
+              onMouseMove={handleTitleMouseMove}
+              onMouseEnter={() => setTitleHovered(true)}
+              onMouseLeave={() => setTitleHovered(false)}
+              style={{
+                transform: getTitleTransform(),
+                transition: 'transform 0.1s ease-out',
+                willChange: 'transform',
+              }}
+            >
+              Data Analyst &<br />
+              Full Stack Developer
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-xl">
               {portfolioConfig.about.intro}
             </p>
           </div>
@@ -85,7 +144,17 @@ const Hero = () => {
         <div 
           className={`relative transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
         >
-          <div className="relative w-full max-w-md mx-auto">
+          <div 
+            className="hero-image-container relative w-full max-w-md mx-auto cursor-pointer"
+            onMouseMove={handleImageMouseMove}
+            onMouseEnter={() => setImageHovered(true)}
+            onMouseLeave={() => setImageHovered(false)}
+            style={{
+              transform: getImageTransform(),
+              transition: 'transform 0.1s ease-out',
+              willChange: 'transform',
+            }}
+          >
             {/* Animated orange circle background */}
             <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 rounded-full transform scale-95 animate-pulse-slow"></div>
             
@@ -93,7 +162,7 @@ const Hero = () => {
             <div className="absolute inset-0 rounded-full border-4 border-orange-300 animate-spin-slow opacity-50"></div>
             
             {/* Profile image */}
-            <div className="relative rounded-full overflow-hidden border-8 border-white shadow-2xl hover:scale-105 transition-transform duration-500 animate-float">
+            <div className="relative rounded-full overflow-hidden border-8 border-white shadow-2xl animate-float">
               <img
                 src={portfolioConfig.personal.image}
                 alt={`${portfolioConfig.personal.name} - Portfolio`}
@@ -103,8 +172,8 @@ const Hero = () => {
             </div>
 
             {/* Social media card with slide-up animation */}
-            <div className="absolute -bottom-6 left-0 right-0 mx-auto w-fit bg-white rounded-2xl shadow-2xl px-6 py-4 flex items-center gap-4 border border-gray-100 animate-slide-up">
-              <span className="text-gray-600 font-medium text-sm whitespace-nowrap">FOLLOW ME ON:</span>
+            <div className="absolute -bottom-6 left-0 right-0 mx-auto w-fit bg-white dark:bg-gray-800 rounded-2xl shadow-2xl px-6 py-4 flex items-center gap-4 border border-gray-100 dark:border-gray-700 animate-slide-up transition-colors duration-500">
+              <span className="text-gray-600 dark:text-gray-300 font-medium text-sm whitespace-nowrap">FOLLOW ME ON:</span>
               <div className="flex gap-3">
                 <a
                   href={portfolioConfig.social.linkedin}
@@ -114,7 +183,7 @@ const Hero = () => {
                   className="p-2 hover:bg-orange-100 rounded-lg transition-all duration-200 hover:scale-125 hover:-translate-y-1"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="w-5 h-5 text-gray-700 hover:text-orange-500 transition-colors" />
+                  <Linkedin className="w-5 h-5 text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors" />
                 </a>
                 <a
                   href={portfolioConfig.social.github}
@@ -124,7 +193,7 @@ const Hero = () => {
                   className="p-2 hover:bg-orange-100 rounded-lg transition-all duration-200 hover:scale-125 hover:-translate-y-1"
                   aria-label="GitHub"
                 >
-                  <Github className="w-5 h-5 text-gray-700 hover:text-orange-500 transition-colors" />
+                  <Github className="w-5 h-5 text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors" />
                 </a>
                 <a
                   href={`mailto:${portfolioConfig.personal.email}`}
@@ -132,7 +201,7 @@ const Hero = () => {
                   className="p-2 hover:bg-orange-100 rounded-lg transition-all duration-200 hover:scale-125 hover:-translate-y-1"
                   aria-label="Email"
                 >
-                  <Mail className="w-5 h-5 text-gray-700 hover:text-orange-500 transition-colors" />
+                  <Mail className="w-5 h-5 text-gray-700 dark:text-gray-300 hover:text-orange-500 transition-colors" />
                 </a>
               </div>
             </div>

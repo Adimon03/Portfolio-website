@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ExternalLink } from 'lucide-react';
 import { portfolioConfig } from '../config/portfolio';
 import { trackExternalLink, trackSectionView } from '../utils/analytics';
@@ -8,12 +8,38 @@ import { useScroll3D } from '../hooks/useScroll3D';
 const Certifications = () => {
   const { ref: sectionRef, isVisible } = useSectionAnimation({ threshold: 0.1 });
   const scroll3D = useScroll3D('certifications');
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (isVisible) {
       trackSectionView('Certifications');
     }
   }, [isVisible]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePosition({ x, y });
+    setHoveredCard(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
+  };
+
+  const getCardTransform = (index: number, rect: DOMRect | null) => {
+    if (hoveredCard !== index || !rect) return 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((mousePosition.y - centerY) / centerY) * -15;
+    const rotateY = ((mousePosition.x - centerX) / centerX) * 15;
+    
+    return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+  };
 
   const handleCardClick = (link: string | null, title: string) => {
     if (link) {
@@ -26,7 +52,7 @@ const Certifications = () => {
     <section 
       id="certifications" 
       ref={sectionRef} 
-      className="py-20 px-4 bg-gradient-to-br from-gray-50 via-orange-50 to-red-50"
+      className="py-20 px-4 bg-gray-50/30 dark:bg-gray-700 transition-colors duration-500"
       aria-label="Certifications section"
       style={{
         transform: `perspective(1200px) rotateX(${scroll3D.rotateX}deg) scale(${scroll3D.scale})`,
@@ -35,7 +61,7 @@ const Certifications = () => {
       }}
     >
       <div className={`max-w-6xl mx-auto ${isVisible ? 'visible' : ''}`}>
-        <h2 className={`text-5xl font-bold text-gray-900 text-center mb-16 stagger-item ${isVisible ? 'visible' : ''}`}>
+        <h2 className={`text-5xl font-bold text-gray-900 dark:text-white text-center mb-16 stagger-item ${isVisible ? 'visible' : ''}`}>
           Certifications & <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Achievements</span>
         </h2>
 
@@ -45,12 +71,17 @@ const Certifications = () => {
               key={index}
               onClick={() => handleCardClick(cert.link, cert.title)}
               onKeyDown={(e) => e.key === 'Enter' && handleCardClick(cert.link, cert.title)}
-              className={`group p-6 bg-white rounded-2xl shadow-xl stagger-item transition-all duration-300 ease-out hover:scale-[1.03] hover:shadow-2xl hover:bg-gradient-to-br hover:from-orange-50 hover:to-red-50 ${
+              onMouseMove={(e) => handleMouseMove(e, index)}
+              onMouseLeave={handleMouseLeave}
+              className={`cert-card group p-6 bg-white rounded-2xl shadow-xl stagger-item hover:shadow-2xl hover:bg-gradient-to-br hover:from-orange-50 hover:to-red-50 ${
                 cert.link ? 'cursor-pointer' : 'cursor-default'
               } ${isVisible ? 'visible' : ''}`}
               style={{ 
                 transitionDelay: `${(index + 1) * 100}ms`,
-                transform: 'translate3d(0, 0, 0)', // GPU acceleration
+                transform: hoveredCard === index 
+                  ? getCardTransform(index, (document.querySelectorAll('.cert-card')[index] as HTMLElement)?.getBoundingClientRect() || null)
+                  : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+                transition: 'transform 0.1s ease-out, box-shadow 0.3s ease-out, background 0.3s ease-out',
                 willChange: 'transform'
               }}
               tabIndex={cert.link ? 0 : undefined}

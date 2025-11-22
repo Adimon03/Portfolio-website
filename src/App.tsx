@@ -7,6 +7,7 @@ import AnimatedBackground from './components/AnimatedBackground';
 import ScrollToTop from './components/ScrollToTop';
 import { usePageTransition } from './hooks/useScrollAnimation';
 import { initGA } from './utils/analytics';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 // Lazy load components for better performance
 const About = lazy(() => import('./components/About'));
@@ -43,25 +44,27 @@ function App() {
   }, []);
 
   return (
-    <ErrorBoundary>
-      <SEO />
-      <div className={`min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-sky-50 relative overflow-x-hidden transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-        <Navbar />
-        <AnimatedBackground />
-        <div className="relative z-10">
-          <Hero />
-          <Suspense fallback={<LoadingSection />}>
-            <About />
-            <Skills />
-            <Certifications />
-            <Projects />
-            <Contact />
-            <Footer />
-          </Suspense>
-          <ScrollToTop />
+    <ThemeProvider>
+      <ErrorBoundary>
+        <SEO />
+        <div className={`min-h-screen bg-gradient-to-br from-gray-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-x-hidden transition-all duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+          <Navbar />
+          <AnimatedBackground />
+          <div className="relative z-10">
+            <Hero />
+            <Suspense fallback={<LoadingSection />}>
+              <About />
+              <Skills />
+              <Certifications />
+              <Projects />
+              <Contact />
+              <Footer />
+            </Suspense>
+            <ScrollToTop />
+          </div>
         </div>
-      </div>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </ThemeProvider>
   );
 }
 

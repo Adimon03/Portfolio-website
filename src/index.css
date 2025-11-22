@@ -10,7 +10,9 @@
 }
 
 html {
-  scroll-padding-top: 2rem;
+  scroll-padding-top: 4rem;
+  scroll-snap-type: y proximity;
+  scroll-padding: 4rem 0;
 }
 
 body {
@@ -19,6 +21,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+/* Scroll snap for sections */
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -196,6 +204,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 /* Animation classes */
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
@@ -242,6 +259,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-spin-reverse {
   animation: spin-reverse 15s linear infinite;
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+  white-space: nowrap;
 }
 
 /* Animation delays */
