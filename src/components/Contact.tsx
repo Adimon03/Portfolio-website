@@ -34,13 +34,22 @@ const Contact = () => {
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+      console.log('EmailJS Config:', { 
+        serviceId: serviceId ? 'Set' : 'Missing', 
+        templateId: templateId ? 'Set' : 'Missing', 
+        publicKey: publicKey ? 'Set' : 'Missing' 
+      });
+
       // Check if EmailJS is configured
       if (!serviceId || !templateId || !publicKey) {
         console.error('EmailJS not configured. Please add credentials to .env file');
+        alert('Email service not configured. Please contact the site administrator.');
         setSubmitStatus('error');
         playErrorSound();
         return;
       }
+
+      console.log('Sending email via EmailJS...');
 
       // Use EmailJS
       const result = await emailjs.sendForm(
@@ -50,17 +59,21 @@ const Contact = () => {
         publicKey
       );
 
+      console.log('EmailJS Response:', result);
+
       if (result.text === 'OK') {
         setSubmitStatus('success');
         playSendSound();
         form.reset();
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
+        console.error('EmailJS returned non-OK status:', result);
         setSubmitStatus('error');
         playErrorSound();
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Form submission error:', error);
+      console.error('Error details:', error.text || error.message);
       setSubmitStatus('error');
       playErrorSound();
     } finally {
