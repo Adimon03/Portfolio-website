@@ -15,6 +15,7 @@ export const portfolioConfig = {
     linkedin: 'https://linkedin.com/in/adithya-s07',
     github: 'https://github.com/Adimon03',
     leetcode: 'https://leetcode.com/u/AdithyaaaS_007',
+    instagram: 'https://www.instagram.com/vamp_adi/',
   },
   
   seo: {
