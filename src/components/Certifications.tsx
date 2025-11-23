@@ -92,33 +92,39 @@ const Certifications = () => {
                 {/* Company Logo */}
                 <div className="flex-shrink-0">
                   {cert.issuer === 'IBM' && (
-                    <div className="w-16 h-16 bg-[#0f62fe] rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-110 transition-transform duration-300" style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '0.1em' }}>
-                      IBM
+                    <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 p-2">
+                      <img 
+                        src="/ibm-logo.svg" 
+                        alt="IBM Logo" 
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                   )}
                   {cert.issuer === 'Udemy' && (
-                    <div className="w-16 h-16 bg-[#a435f0] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <svg viewBox="0 0 200 200" className="w-11 h-11">
-                        <g fill="white">
-                          {/* U shape */}
-                          <path d="M40 50 L40 110 Q40 140 60 150 Q80 160 100 160 Q120 160 140 150 Q160 140 160 110 L160 50 L140 50 L140 110 Q140 130 125 137 Q110 144 100 144 Q90 144 75 137 Q60 130 60 110 L60 50 Z"/>
-                        </g>
-                      </svg>
+                    <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                      <img 
+                        src="/udemy-logo.svg" 
+                        alt="Udemy Logo" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   )}
                   {cert.issuer === 'Ethnus' && (
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#ff6b35] to-[#f7931e] rounded-xl flex items-center justify-center text-white font-bold text-[10px] shadow-lg group-hover:scale-110 transition-transform duration-300" style={{ fontFamily: 'Arial, sans-serif', letterSpacing: '0.05em' }}>
-                      <div className="text-center leading-tight">
-                        <div>ETHNUS</div>
-                        <div className="text-[8px] font-normal">CODEMITHRA</div>
-                      </div>
+                    <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 overflow-hidden bg-white">
+                      <img 
+                        src="/ethnus-logo.svg" 
+                        alt="Ethnus Logo" 
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                   )}
                   {cert.issuer === 'Oracle' && (
-                    <div className="w-16 h-16 bg-[#f80000] rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <div className="text-white font-bold text-sm" style={{ fontFamily: 'Arial, sans-serif' }}>
-                        <div className="border-2 border-white px-2 py-1 rounded">ORACLE</div>
-                      </div>
+                    <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                      <img 
+                        src="/oracle-logo.svg" 
+                        alt="Oracle Logo" 
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                   )}
                   {cert.issuer === 'Google' && (

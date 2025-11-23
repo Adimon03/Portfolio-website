@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Purple upward chevron/arrow (graduation cap) -->
+  <path fill="#A435F0" d="M 140 220 L 256 120 L 372 220 L 372 180 L 256 80 L 140 180 Z"/>
+  
+  <!-- Black U -->
+  <path fill="#000000" d="M 160 260 L 160 380 C 160 425 195 460 240 460 L 272 460 C 317 460 352 425 352 380 L 352 260 L 310 260 L 310 380 C 310 402 292 420 270 420 L 242 420 C 220 420 202 402 202 380 L 202 260 Z"/>
+</svg>

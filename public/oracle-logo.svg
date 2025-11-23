@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Orange-red background -->
+  <rect width="512" height="512" fill="#C74634"/>
+  
+  <!-- White rounded rectangle ring (O shape) -->
+  <g fill="#FFFFFF">
+    <!-- Outer rounded rectangle -->
+    <rect x="100" y="180" width="312" height="152" rx="76" ry="76" fill="#FFFFFF"/>
+    <!-- Inner rounded rectangle (cut out to make ring) -->
+    <rect x="140" y="220" width="232" height="72" rx="36" ry="36" fill="#C74634"/>
+  </g>
+</svg>
