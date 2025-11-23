@@ -36,29 +36,9 @@ const Contact = () => {
 
       // Check if EmailJS is configured
       if (!serviceId || !templateId || !publicKey) {
-        console.warn('EmailJS not configured, falling back to FormSubmit');
-        
-        // Fallback to FormSubmit
-        const formData = new FormData(form);
-        const response = await fetch(`https://formsubmit.co/ajax/${portfolioConfig.personal.email}`, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        const data = await response.json();
-
-        if (response.ok && data.success) {
-          setSubmitStatus('success');
-          playSendSound();
-          form.reset();
-          setTimeout(() => setSubmitStatus('idle'), 5000);
-        } else {
-          setSubmitStatus('error');
-          playErrorSound();
-        }
+        console.error('EmailJS not configured. Please add credentials to .env file');
+        setSubmitStatus('error');
+        playErrorSound();
         return;
       }
 
