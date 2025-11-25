@@ -115,56 +115,108 @@ const Contact = () => {
         </p>
 
         <div className="grid md:grid-cols-2 gap-12">
-          <div className={`space-y-6 stagger-item ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '300ms' }}>
-            {contactInfo.map((info, index) => {
-              return (
-                <a
-                  key={index}
-                  href={info.href}
-                  target={info.href.startsWith('http') ? '_blank' : undefined}
-                  rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  onClick={() => handleContactClick(info.label)}
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
-                  aria-label={`${info.label}: ${info.value}`}
-                >
-                  <div className="w-14 h-14 flex items-center justify-center rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    {info.label === 'Email' && (
-                      <div className="w-full h-full bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
-                        <Mail className="w-7 h-7 text-white" />
+          {/* Circular Contact Icons */}
+          <div className={`relative stagger-item ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '300ms' }}>
+            <div className="relative w-full max-w-md mx-auto aspect-square flex items-center justify-center">
+              {/* Connecting Lines - Circle */}
+              <svg className="absolute inset-0 w-full h-full" style={{ transform: 'rotate(-90deg)' }}>
+                <circle
+                  cx="50%"
+                  cy="50%"
+                  r="45%"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeDasharray="8,6"
+                  className="text-orange-500 dark:text-orange-400"
+                  opacity="0.7"
+                />
+              </svg>
+              
+              {contactInfo.map((info, index) => {
+                const angle = (index * 360) / contactInfo.length - 90;
+                const radius = 45; // percentage
+                const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
+                const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
+                
+                return (
+                  <a
+                    key={index}
+                    href={info.href}
+                    target={info.href.startsWith('http') ? '_blank' : undefined}
+                    rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    onClick={() => handleContactClick(info.label)}
+                    className="absolute group"
+                    style={{
+                      left: `${x}%`,
+                      top: `${y}%`,
+                      transform: 'translate(-50%, -50%)',
+                    }}
+                    aria-label={`${info.label}: ${info.value}`}
+                  >
+                    <div className="relative">
+                      {/* Glow effect */}
+                      <div className="absolute inset-0 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300"
+                        style={{
+                          background: info.label === 'Email' ? 'linear-gradient(to bottom right, #ef4444, #dc2626)' :
+                                     info.label === 'Phone' ? 'linear-gradient(to bottom right, #10b981, #059669)' :
+                                     info.label === 'LinkedIn' ? '#0A66C2' :
+                                     info.label === 'GitHub' ? '#181717' :
+                                     '#FFA116'
+                        }}
+                      />
+                      <div className="relative w-20 h-20 flex items-center justify-center rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 group-hover:-translate-y-2">
+                        {info.label === 'Email' && (
+                          <div className="w-full h-full bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center border-2 border-red-400">
+                            <Mail className="w-8 h-8 text-white drop-shadow-lg" />
+                          </div>
+                        )}
+                        {info.label === 'Phone' && (
+                          <div className="w-full h-full bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center border-2 border-green-400">
+                            <Phone className="w-8 h-8 text-white drop-shadow-lg" />
+                          </div>
+                        )}
+                        {info.label === 'LinkedIn' && (
+                          <div className="w-full h-full bg-gradient-to-br from-[#0A66C2] to-[#084a8f] rounded-full flex items-center justify-center border-2 border-blue-400">
+                            <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white drop-shadow-lg">
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                          </div>
+                        )}
+                        {info.label === 'GitHub' && (
+                          <div className="w-full h-full bg-gradient-to-br from-[#24292e] to-[#1a1e22] rounded-full flex items-center justify-center border-2 border-gray-600">
+                            <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white drop-shadow-lg">
+                              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                          </div>
+                        )}
+                        {info.label === 'LeetCode' && (
+                          <div className="w-full h-full bg-gradient-to-br from-[#FFA116] to-[#e68a00] rounded-full flex items-center justify-center border-2 border-orange-300">
+                            <Code className="w-8 h-8 text-white drop-shadow-lg" />
+                          </div>
+                        )}
                       </div>
-                    )}
-                    {info.label === 'Phone' && (
-                      <div className="w-full h-full bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-                        <Phone className="w-7 h-7 text-white" />
+                      <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-center bg-gradient-to-b from-gray-50 via-gray-50 to-transparent dark:from-gray-700 dark:via-gray-700 dark:to-transparent px-3 py-1 rounded-lg">
+                        <p className="text-sm text-gray-900 dark:text-white font-bold">
+                          {info.label}
+                        </p>
+                        <p className="text-xs text-gray-600 dark:text-gray-300 mt-1 font-medium">
+                          {info.value}
+                        </p>
                       </div>
-                    )}
-                    {info.label === 'LinkedIn' && (
-                      <div className="w-full h-full bg-[#0A66C2] rounded-lg flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white">
-                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                        </svg>
-                      </div>
-                    )}
-                    {info.label === 'GitHub' && (
-                      <div className="w-full h-full bg-[#181717] rounded-lg flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white">
-                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                      </div>
-                    )}
-                    {info.label === 'LeetCode' && (
-                      <div className="w-full h-full bg-[#FFA116] rounded-lg flex items-center justify-center">
-                        <Code className="w-7 h-7 text-white" />
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500 font-medium">{info.label}</p>
-                    <p className="text-gray-800 font-semibold">{info.value}</p>
-                  </div>
-                </a>
-              );
-            })}
+                    </div>
+                  </a>
+                );
+              })}
+              
+              {/* Center decoration */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-900/20 dark:to-red-900/20 flex items-center justify-center">
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-gray-800 dark:text-white">Let's</p>
+                  <p className="text-xl font-semibold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">Connect</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <form

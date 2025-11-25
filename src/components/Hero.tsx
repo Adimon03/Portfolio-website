@@ -47,18 +47,20 @@ const Hero = () => {
   };
 
   const getImageTransform = () => {
-    if (!imageHovered) return 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    if (!imageHovered) return 'perspective(1500px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     
     const imageElement = document.querySelector('.hero-image-container');
-    if (!imageElement) return 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    if (!imageElement) return 'perspective(1500px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     
     const rect = imageElement.getBoundingClientRect();
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((imageMousePos.y - centerY) / centerY) * -15;
-    const rotateY = ((imageMousePos.x - centerX) / centerX) * 15;
     
-    return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    // Smoother rotation with reduced intensity
+    const rotateX = ((imageMousePos.y - centerY) / centerY) * -8;
+    const rotateY = ((imageMousePos.x - centerX) / centerX) * 8;
+    
+    return `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
   };
 
   const scrollToSection = (id: string) => {
@@ -151,7 +153,7 @@ const Hero = () => {
             onMouseLeave={() => setImageHovered(false)}
             style={{
               transform: getImageTransform(),
-              transition: 'transform 0.1s ease-out',
+              transition: 'transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               willChange: 'transform',
             }}
           >

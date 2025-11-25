@@ -21,10 +21,32 @@ const ScrollToTop = () => {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    const currentPosition = window.pageYOffset;
+    const distance = currentPosition;
+    
+    // Calculate duration based on distance (faster scroll)
+    const duration = Math.min(Math.abs(distance) * 0.5, 1200); // Max 1.2 seconds
+    
+    const startTime = performance.now();
+    
+    // Easing function for smooth acceleration and deceleration
+    const easeInOutCubic = (t: number): number => {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+    
+    const animateScroll = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeProgress = easeInOutCubic(progress);
+      
+      window.scrollTo(0, currentPosition - distance * easeProgress);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+    
+    requestAnimationFrame(animateScroll);
   };
 
   return (

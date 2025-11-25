@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { portfolioConfig } from '../config/portfolio';
 import { trackButtonClick } from '../utils/analytics';
 import ThemeToggle from './ThemeToggle';
 
@@ -53,17 +52,16 @@ const Navbar = () => {
     { label: 'About', id: 'about' },
     { label: 'Skills', id: 'skills' },
     { label: 'Projects', id: 'projects' },
-    { label: 'Resume', action: () => window.open(portfolioConfig.personal.resumeUrl, '_blank') },
     { label: 'Contact', id: 'contact' },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900 shadow-lg">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 shadow-lg transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-white">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
               Adi
             </h1>
           </div>
@@ -73,8 +71,8 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <button
                 key={index}
-                onClick={() => item.action ? item.action() : scrollToSection(item.id!)}
-                className={`relative text-gray-300 hover:text-white hover:scale-110 transition-all duration-300 font-medium group ${
+                onClick={() => scrollToSection(item.id)}
+                className={`relative text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-white hover:scale-110 transition-all duration-300 font-medium group ${
                   index === 0 ? 'text-orange-500' : ''
                 }`}
               >
@@ -97,7 +95,7 @@ const Navbar = () => {
             <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-300 hover:text-white p-2"
+              className="text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-white p-2"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -108,13 +106,13 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-gray-800 border-t border-gray-700">
+        <div className="md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-colors duration-500">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item, index) => (
               <button
                 key={index}
-                onClick={() => item.action ? item.action() : scrollToSection(item.id!)}
-                className="block w-full text-left px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 hover:translate-x-2 hover:scale-105 rounded-md transition-all duration-300"
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-orange-500 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 hover:translate-x-2 hover:scale-105 rounded-md transition-all duration-300"
               >
                 {item.label}
               </button>
