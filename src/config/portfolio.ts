@@ -108,6 +108,17 @@ export const portfolioConfig = {
       link: 'https://github.com/Adimon03/AI-VOICE-assistant-/tree/main/AI%20VOICE%20ASSISTANT%20PROJECT/VAPI-AI-Voice-Assistant',
       image: '/AI 2 copy.webp',
     },
+    {
+      title: 'Phishing Email Detector',
+      tags: ['React', 'Flask', 'Python', 'JavaScript', 'Tailwind CSS'],
+      description: [
+        'Built AI-powered full-stack app analyzing emails for phishing indicators',
+        'Implemented URL analysis, sender verification, and risk scoring algorithm',
+        'Created 10 sample emails with color-coded risk levels and educational summaries',
+      ],
+      link: 'https://github.com/Adimon03/Phishing-email-detector',
+      image: '/phishing.jpg',
+    },
   ],
 } as const;
 

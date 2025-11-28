@@ -16,19 +16,19 @@ const Navbar = () => {
       const currentPosition = window.pageYOffset;
       const distance = offsetPosition - currentPosition;
       
-      // Calculate duration based on distance (longer distance = longer duration)
-      const duration = Math.min(Math.abs(distance) * 0.8, 1500); // Max 1.5 seconds, faster scroll
+      // Much faster scroll - max 500ms
+      const duration = Math.min(Math.abs(distance) * 0.3, 500);
       
       const startTime = performance.now();
       
-      const easeInOutCubic = (t: number): number => {
-        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const easeInOutQuad = (t: number): number => {
+        return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
       };
       
       const animateScroll = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const easeProgress = easeInOutCubic(progress);
+        const easeProgress = easeInOutQuad(progress);
         
         window.scrollTo(0, currentPosition + distance * easeProgress);
         

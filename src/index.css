@@ -862,3 +862,89 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
+
+/* Custom Scrollbar Styles for Horizontal Project Scroll */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  @apply bg-gray-200 dark:bg-gray-800 rounded-full;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-600 rounded-full hover:bg-gray-500 dark:hover:bg-gray-500;
+}
+
+/* Firefox scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(156 163 175) rgb(229 231 235);
+}
+
+.dark .scrollbar-thin {
+  scrollbar-color: rgb(75 85 99) rgb(31 41 55);
+}
+
+/* Smooth horizontal scroll */
+.overflow-x-auto {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Cascade Animation for Project Cards */
+.project-card {
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease-out,
+              scale 0.3s ease-out;
+}
+
+/* Smooth entrance animation */
+@keyframes cascade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Apply cascade animation when cards become visible */
+.project-card.visible {
+  animation: cascade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Optimized horizontal scroll - GPU accelerated */
+.overflow-x-auto {
+  scroll-snap-type: x proximity;
+  scroll-padding: 0 2rem;
+  -webkit-overflow-scrolling: touch;
+  /* GPU acceleration for smooth scrolling */
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+.project-card {
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+  /* GPU acceleration for cards */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Optimize rendering */
+  contain: layout style paint;
+}
+
+/* Optimize blur effect for performance */
+.project-card.blur-sm {
+  filter: blur(4px);
+  will-change: filter;
+}
+
+/* Enhanced scrollbar for better visibility */
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  @apply bg-gradient-to-r from-orange-500 to-red-500;
+}
