@@ -30,3 +30,6 @@ dist-ssr
 
 # Build files
 build
+
+# Phishing detector project (separate repository)
+phishing-detector/
