@@ -41,6 +41,8 @@ const Skills = () => {
     return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
   };
 
+
+
   const skillCategories = [
     {
       icon: Code2,

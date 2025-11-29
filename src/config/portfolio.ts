@@ -8,7 +8,7 @@ export const portfolioConfig = {
     location: 'VIT Bhopal University',
     graduation: 'September 2026',
     image: '/new_pfp.webp',
-    resumeUrl: '/Resume_adi.pdf', // Your resume in public folder
+    resumeUrl: '/Resume_adi_new.pdf', // Your resume in public folder
   },
   
   social: {
@@ -47,9 +47,9 @@ export const portfolioConfig = {
   ],
   
   skills: {
-    programming: ['Python', 'SQL', 'C/C++', 'JavaScript', 'Java', 'HTML/CSS'],
-    tools: ['Power BI', 'Tableau', 'MongoDB', 'MySQL', 'Git', 'AWS', 'Google Cloud'],
-    core: ['Data Structures', 'Algorithms', 'Cybersecurity', 'OOP', 'System Design', 'Computer Networks', 'DBMS'],
+    programming: ['Python', 'JavaScript', 'TypeScript', 'SQL', 'C/C++', 'Java', 'HTML/CSS'],
+    tools: ['React', 'Flask', 'Tailwind CSS', 'Power BI', 'Tableau', 'MongoDB', 'MySQL', 'Git', 'AWS', 'Google Cloud', 'REST API', 'Vite'],
+    core: ['Data Structures', 'Algorithms', 'Cybersecurity', 'OOP', 'System Design', 'Computer Networks', 'DBMS', 'Machine Learning'],
   },
   
   certifications: [
@@ -87,7 +87,7 @@ export const portfolioConfig = {
   
   projects: [
     {
-      title: 'Customer Trends Data Analysis',
+      title: 'Customer Intelligence & Sales Insights Analytics System',
       tags: ['Power BI', 'SQL', 'Python'],
       description: [
         'Built a complete data pipeline analyzing shopping behavior',
