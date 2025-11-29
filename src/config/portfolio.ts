@@ -119,6 +119,17 @@ export const portfolioConfig = {
       link: 'https://github.com/Adimon03/Phishing-email-detector',
       image: '/phishing.jpg',
     },
+    {
+      title: 'SOC Dashboard - Cybersecurity Monitoring',
+      tags: ['React', 'Flask', 'Tailwind CSS', 'Python', 'Cybersecurity'],
+      description: [
+        'Real-time Security Operations Center dashboard with threat monitoring and event tracking',
+        'Built scalable architecture supporting SIEM, firewall, and IDS/IPS integrations',
+        'Implemented WebSocket support for live security feeds and RESTful API for data ingestion',
+      ],
+      link: 'https://github.com/Adimon03/SOC-Dashboard-Cybersecurity-project',
+      image: '/bg-data-analytics.jpg',
+    },
   ],
 } as const;
 

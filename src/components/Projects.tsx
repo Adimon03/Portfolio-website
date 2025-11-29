@@ -17,9 +17,9 @@ const Projects = () => {
     }
   }, [isVisible]);
 
-  const projectIcons = [BarChart3, Mic, Shield];
-  const projectColors = ['text-orange-600', 'text-red-600', 'text-blue-600'];
-  const projectGradients = ['from-orange-100 to-red-100', 'from-red-100 to-orange-100', 'from-blue-100 to-cyan-100'];
+  const projectIcons = [BarChart3, Mic, Shield, Shield];
+  const projectColors = ['text-orange-600', 'text-red-600', 'text-blue-600', 'text-purple-600'];
+  const projectGradients = ['from-orange-100 to-red-100', 'from-red-100 to-orange-100', 'from-blue-100 to-cyan-100', 'from-purple-100 to-pink-100'];
 
   const handleProjectClick = useCallback((link: string | undefined, title: string) => {
     if (link) {
