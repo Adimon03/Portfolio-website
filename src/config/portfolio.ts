@@ -128,7 +128,7 @@ export const portfolioConfig = {
         'Implemented WebSocket support for live security feeds and RESTful API for data ingestion',
       ],
       link: 'https://github.com/Adimon03/SOC-Dashboard-Cybersecurity-project',
-      image: '/soc.jpg',
+      image: '/SOC.jpg',
     },
   ],
 } as const;
