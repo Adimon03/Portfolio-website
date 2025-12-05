@@ -120,7 +120,6 @@ const Projects = () => {
                 const iconColor = projectColors[index];
                 const gradient = projectGradients[index];
                 const isHovered = hoveredCard === index;
-                const isOtherHovered = hoveredCard !== null && hoveredCard !== index;
                 
                 return (
                   <div
@@ -131,11 +130,10 @@ const Projects = () => {
                     onMouseLeave={handleMouseLeave}
                     className={`project-card group flex flex-col bg-white/80 backdrop-blur-md rounded-xl md:rounded-2xl shadow-xl overflow-hidden transition-all duration-300 ${
                       project.link ? 'cursor-pointer' : ''
-                    } ${isHovered ? 'ring-2 md:ring-4 ring-orange-500 shadow-2xl !scale-105 z-10' : ''} ${isOtherHovered ? '!opacity-60' : ''}`}
+                    } ${isHovered ? 'ring-2 md:ring-4 ring-orange-500 shadow-2xl !scale-105 z-10' : ''}`}
                     style={{ 
                       width: window.innerWidth < 768 ? '280px' : '420px',
                       minWidth: window.innerWidth < 768 ? '280px' : '420px',
-                      filter: isOtherHovered ? 'blur(3px)' : 'none',
                     }}
                     tabIndex={project.link ? 0 : undefined}
                     role={project.link ? 'button' : undefined}
