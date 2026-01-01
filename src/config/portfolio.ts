@@ -96,7 +96,7 @@ export const portfolioConfig = {
         'Features PBKDF2 key derivation (100k iterations) ensuring master password never leaves device',
       ],
       link: 'https://github.com/Adimon03/Secure-Password-Vault-with-Zero-Knowledge-Encryption',
-      image: '/password-vault-preview.jpg', // We'll create this image
+      image: '/AI 2.webp', // Using existing image temporarily
     },
     {
       title: 'Customer Intelligence & Sales Insights Analytics System',
