@@ -48,8 +48,8 @@ export const portfolioConfig = {
   
   skills: {
     programming: ['Python', 'JavaScript', 'TypeScript', 'SQL', 'C/C++', 'Java', 'HTML/CSS'],
-    tools: ['React', 'Flask', 'Tailwind CSS', 'Power BI', 'Tableau', 'MongoDB', 'MySQL', 'Git', 'AWS', 'Google Cloud', 'REST API', 'Vite'],
-    core: ['Data Structures', 'Algorithms', 'Cybersecurity', 'OOP', 'System Design', 'Computer Networks', 'DBMS', 'Machine Learning'],
+    tools: ['React', 'Flask', 'FastAPI', 'Tailwind CSS', 'Power BI', 'Tableau', 'MongoDB', 'MySQL', 'SQLite', 'Git', 'AWS', 'Google Cloud', 'REST API', 'Vite', 'JWT', 'Zustand'],
+    core: ['Data Structures', 'Algorithms', 'Cybersecurity', 'Cryptography', 'Zero-Knowledge Systems', 'OOP', 'System Design', 'Computer Networks', 'DBMS', 'Machine Learning'],
   },
   
   certifications: [
@@ -86,6 +86,18 @@ export const portfolioConfig = {
   ],
   
   projects: [
+    {
+      title: 'Secure Password Vault with Zero-Knowledge Encryption',
+      tags: ['React', 'TypeScript', 'FastAPI', 'Python', 'AES-256', 'JWT', 'SQLite'],
+      description: [
+        'Built zero-knowledge password manager with client-side AES-256-CBC encryption',
+        'Implemented FastAPI backend with JWT authentication and secure password reset system',
+        'Created beautiful React TypeScript frontend with animated RGB breathing watermark',
+        'Features PBKDF2 key derivation (100k iterations) ensuring master password never leaves device',
+      ],
+      link: 'https://github.com/Adimon03/Secure-Password-Vault-with-Zero-Knowledge-Encryption',
+      image: '/password-vault-preview.jpg', // We'll create this image
+    },
     {
       title: 'Customer Intelligence & Sales Insights Analytics System',
       tags: ['Power BI', 'SQL', 'Python'],
