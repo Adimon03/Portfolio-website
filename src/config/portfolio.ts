@@ -87,6 +87,18 @@ export const portfolioConfig = {
   
   projects: [
     {
+      title: 'Business Intelligence Dashboard - Complete Data Analysis Pipeline',
+      tags: ['Power BI', 'Python', 'SQL', 'Data Analysis', 'SQLite', 'Pandas', 'Matplotlib'],
+      description: [
+        'Built end-to-end BI solution analyzing $118.7M in sales data with 25.99% profit margins',
+        'Created 4-page interactive Power BI dashboard with executive KPIs, customer intelligence, and product analytics',
+        'Developed Python data pipeline with automated cleaning, EDA, and SQLite database creation',
+        'Delivered actionable insights: Government segment drives 44.2% sales, Paseo product leads with 27.8% market share',
+      ],
+      link: 'https://github.com/Adimon03/Business_Intelligence_Dashboard',
+      image: '/bg-data-analytics.jpg',
+    },
+    {
       title: 'Secure Password Vault with Zero-Knowledge Encryption',
       tags: ['React', 'TypeScript', 'FastAPI', 'Python', 'AES-256', 'JWT', 'SQLite'],
       description: [
