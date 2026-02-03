@@ -54,6 +54,12 @@ export const portfolioConfig = {
   
   certifications: [
     {
+      title: 'IBM Data Analysis with Python',
+      issuer: 'IBM',
+      icon: '📊',
+      link: 'https://coursera.org/verify/DEPC7L4LN3N6',
+    },
+    {
       title: 'IBM Cyber Security Analyst',
       issuer: 'IBM',
       icon: '🛡️',

@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { BarChart3, Mic, Shield, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BarChart3, Bot, Shield, ExternalLink, ChevronLeft, ChevronRight, Lock, Monitor } from 'lucide-react';
 import { portfolioConfig } from '../config/portfolio';
 import { trackExternalLink, trackSectionView } from '../utils/analytics';
 import { useSectionAnimation } from '../hooks/useSectionAnimation';
@@ -17,7 +17,7 @@ const Projects = () => {
     }
   }, [isVisible]);
 
-  const projectIcons = [Shield, BarChart3, Mic, Shield, Shield];
+  const projectIcons = [BarChart3, Lock, BarChart3, Bot, Shield, Monitor];
   const projectColors = ['text-green-600', 'text-orange-600', 'text-red-600', 'text-blue-600', 'text-purple-600'];
   const projectGradients = ['from-green-100 to-emerald-100', 'from-orange-100 to-red-100', 'from-red-100 to-orange-100', 'from-blue-100 to-cyan-100', 'from-purple-100 to-pink-100'];
 
@@ -63,7 +63,7 @@ const Projects = () => {
   const scroll = useCallback((direction) => {
     const container = scrollContainerRef.current;
     if (container) {
-      const cardWidth = window.innerWidth < 768 ? 280 : 420;
+      const cardWidth = window.innerWidth < 768 ? 260 : 340;
       const gap = window.innerWidth < 768 ? 16 : 32;
       const scrollAmount = cardWidth + gap;
       
@@ -128,19 +128,15 @@ const Projects = () => {
                     onKeyDown={(e) => e.key === 'Enter' && handleProjectClick(project.link, project.title)}
                     onMouseEnter={() => handleMouseEnter(index)}
                     onMouseLeave={handleMouseLeave}
-                    className={`project-card group flex flex-col bg-white/80 backdrop-blur-md rounded-xl md:rounded-2xl shadow-xl overflow-hidden transition-all duration-300 ${
+                    className={`project-card group flex flex-col bg-white/80 backdrop-blur-md rounded-xl md:rounded-2xl shadow-xl overflow-hidden transition-all duration-300 w-[260px] md:w-[340px] min-w-[260px] md:min-w-[340px] ${
                       project.link ? 'cursor-pointer' : ''
                     } ${isHovered ? 'ring-2 md:ring-4 ring-orange-500 shadow-2xl !scale-105 z-10' : ''}`}
-                    style={{ 
-                      width: window.innerWidth < 768 ? '280px' : '420px',
-                      minWidth: window.innerWidth < 768 ? '280px' : '420px',
-                    }}
                     tabIndex={project.link ? 0 : undefined}
                     role={project.link ? 'button' : undefined}
                     aria-label={`${project.title} project`}
                   >
                     {project.image && (
-                      <div className="relative h-32 md:h-48 overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300">
+                      <div className="relative h-28 md:h-40 overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300">
                         <img
                           src={project.image}
                           alt={`${project.title} preview`}
@@ -155,16 +151,16 @@ const Projects = () => {
                       </div>
                     )}
 
-                    <div className="p-4 md:p-8 flex flex-col flex-grow">
-                      <div className={`inline-block p-2 md:p-4 bg-gradient-to-br ${gradient} rounded-lg md:rounded-xl mb-3 md:mb-6 w-fit`}>
+                    <div className="p-4 md:p-6 flex flex-col flex-grow">
+                      <div className={`inline-block p-2 md:p-3 bg-gradient-to-br ${gradient} rounded-lg md:rounded-xl mb-3 md:mb-4 w-fit`}>
                         <Icon className={`w-5 h-5 md:w-8 md:h-8 ${iconColor}`} aria-hidden="true" />
                       </div>
 
-                      <h3 className="text-lg md:text-2xl font-bold text-gray-900 mb-2 md:mb-4 group-hover:text-gradient transition-all duration-300 line-clamp-2">
+                      <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-gradient transition-all duration-300 line-clamp-2">
                         {project.title}
                       </h3>
 
-                      <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
+                      <div className="flex flex-wrap gap-1.5 md:gap-2 mb-2 md:mb-3">
                         {project.tags.map((tag, tagIndex) => (
                           <span
                             key={tagIndex}
@@ -175,7 +171,7 @@ const Projects = () => {
                         ))}
                       </div>
 
-                      <ul className="space-y-1.5 md:space-y-3 text-gray-600 mb-4 md:mb-6 flex-grow text-xs md:text-base">
+                      <ul className="space-y-1 md:space-y-2 text-gray-600 mb-3 md:mb-4 flex-grow text-xs md:text-sm">
                         {project.description.map((item, itemIndex) => (
                           <li key={itemIndex} className="flex items-start gap-1.5 md:gap-2">
                             <span className="text-emerald-500 mt-0.5 md:mt-1 text-xs md:text-base" aria-hidden="true">▪</span>

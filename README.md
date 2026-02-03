@@ -11,24 +11,35 @@
 - **Interactive**: Engaging user experience with 3D effects and transitions
 - **Fast Performance**: Built with Vite for lightning-fast loading
 - **SEO Optimized**: Structured for search engine visibility
+- **Dark/Light Theme**: Toggle between themes for better user experience
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 18 + TypeScript
+- **Frontend**: React 18 + JavaScript
 - **Styling**: Tailwind CSS
 - **Build Tool**: Vite
-- **Animations**: Framer Motion
 - **Icons**: Lucide React
+- **Email Service**: EmailJS
 - **Deployment**: Netlify
 
 ## 📊 Showcased Projects
 
 ### 🎯 Featured Projects
-- **Business Intelligence Dashboard** - Complete data analysis pipeline with Power BI
-- **Secure Password Vault** - Zero-knowledge encryption system
-- **AI Voice Assistant** - Real-time voice recognition system
-- **Phishing Email Detector** - AI-powered security tool
-- **SOC Dashboard** - Cybersecurity monitoring system
+- **Business Intelligence Dashboard** - Complete data analysis pipeline analyzing $118.7M in sales data
+- **Secure Password Vault** - Zero-knowledge encryption system with AES-256-CBC
+- **Customer Intelligence Analytics** - Shopping behavior analysis with Power BI dashboards
+- **AI Voice Assistant** - Real-time voice recognition and call summary system
+- **Phishing Email Detector** - AI-powered security tool with risk scoring
+- **SOC Dashboard** - Cybersecurity monitoring with real-time threat tracking
+
+## 🏆 Certifications
+
+- **IBM Data Analysis with Python** - Coursera Verified
+- **IBM Cyber Security Analyst** - IBM Cognitive Class
+- **MERN Full Stack Developer** - Ethnus
+- **OCI 2025 Certified Generative AI Professional** - Oracle
+- **Japanese N4 Course** - Udemy
+- **Foundations of Cybersecurity** - Google
 
 ## 🚀 Quick Start
 
@@ -68,34 +79,35 @@ portfolio-website/
 │   ├── images/            # Project images and icons
 │   └── Resume_adi_new.pdf # Resume file
 ├── src/
-│   ├── components/        # React components
+│   ├── components/        # React components (JavaScript)
 │   ├── config/           # Portfolio configuration
-│   ├── contexts/         # React contexts
-│   ├── hooks/            # Custom hooks
-│   └── utils/            # Utility functions
+│   ├── contexts/         # React contexts (Theme)
+│   ├── hooks/            # Custom hooks (animations, scroll)
+│   └── utils/            # Utility functions (analytics, performance)
 ├── index.html            # Entry HTML file
 └── package.json          # Dependencies and scripts
 ```
 
 ## ⚙️ Configuration
 
-The portfolio content is managed through `src/config/portfolio.ts`:
+The portfolio content is managed through `src/config/portfolio.js`:
 
 - **Personal Information**: Name, title, contact details
 - **Projects**: Project descriptions, technologies, links
 - **Skills**: Technical skills and tools
-- **Certifications**: Professional certifications
+- **Certifications**: Professional certifications with verification links
 - **Experience**: Work experience and internships
+- **SEO**: Meta tags and social media optimization
 
 ## 🎨 Customization
 
 ### Adding New Projects
-Edit `src/config/portfolio.ts` and add your project to the `projects` array:
+Edit `src/config/portfolio.js` and add your project to the `projects` array:
 
-```typescript
+```javascript
 {
   title: 'Your Project Name',
-  tags: ['React', 'TypeScript', 'API'],
+  tags: ['React', 'JavaScript', 'API'],
   description: [
     'Project description line 1',
     'Project description line 2',
@@ -105,10 +117,22 @@ Edit `src/config/portfolio.ts` and add your project to the `projects` array:
 }
 ```
 
-### Updating Personal Information
-Modify the `personal` section in `src/config/portfolio.ts`:
+### Adding New Certifications
+Add certifications to the `certifications` array:
 
-```typescript
+```javascript
+{
+  title: 'Certification Name',
+  issuer: 'Issuing Organization',
+  icon: '🏆',
+  link: 'https://verification-link.com',
+}
+```
+
+### Updating Personal Information
+Modify the `personal` section in `src/config/portfolio.js`:
+
+```javascript
 personal: {
   name: 'Your Name',
   title: 'Your Title',
@@ -133,22 +157,37 @@ The portfolio is fully responsive and optimized for:
 - `npm run lint` - Run ESLint
 
 ### Code Quality
-- **TypeScript**: Type-safe development
+- **JavaScript**: Modern ES6+ syntax with React best practices
 - **ESLint**: Code linting and formatting
-- **Modern React**: Hooks, functional components
-- **Performance**: Optimized images and lazy loading
+- **Modern React**: Hooks, functional components, context API
+- **Performance**: Optimized images, lazy loading, and code splitting
 
 ## 🌐 Deployment
 
 The portfolio is deployed on Netlify with automatic deployments from the main branch.
 
-**Live Website**: [Your Portfolio URL]
+**Live Website**: [Portfolio Website](https://your-portfolio-url.netlify.app)
 
 ### Deploy Your Own
 1. Fork this repository
-2. Update `src/config/portfolio.ts` with your information
-3. Connect to Netlify or your preferred hosting platform
-4. Deploy!
+2. Update `src/config/portfolio.js` with your information
+3. Replace images in the `public/` folder with your own
+4. Connect to Netlify or your preferred hosting platform
+5. Deploy!
+
+### Environment Setup
+```bash
+# Clone and setup
+git clone https://github.com/Adimon03/Portfolio-website.git
+cd Portfolio-website
+npm install
+
+# Development
+npm run dev
+
+# Production build
+npm run build
+```
 
 ## 📞 Contact
 
