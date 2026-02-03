@@ -8,7 +8,7 @@ import { useScroll3D } from '../hooks/useScroll3D';
 const Certifications = () => {
   const { ref: sectionRef, isVisible } = useSectionAnimation({ threshold: 0.1 });
   const scroll3D = useScroll3D('certifications');
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Certifications = () => {
     }
   }, [isVisible]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+  const handleMouseMove = (e, index) => {
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -30,7 +30,7 @@ const Certifications = () => {
     setHoveredCard(null);
   };
 
-  const getCardTransform = (index: number, rect: DOMRect | null) => {
+  const getCardTransform = (index, rect) => {
     if (hoveredCard !== index || !rect) return 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
     
     const centerX = rect.width / 2;
@@ -41,7 +41,7 @@ const Certifications = () => {
     return `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
   };
 
-  const handleCardClick = (link: string | null, title: string) => {
+  const handleCardClick = (link, title) => {
     if (link) {
       trackExternalLink(`Certification: ${title}`);
       window.open(link, '_blank');
@@ -79,7 +79,7 @@ const Certifications = () => {
               style={{ 
                 transitionDelay: `${(index + 1) * 100}ms`,
                 transform: hoveredCard === index 
-                  ? getCardTransform(index, (document.querySelectorAll('.cert-card')[index] as HTMLElement)?.getBoundingClientRect() || null)
+                  ? getCardTransform(index, document.querySelectorAll('.cert-card')[index]?.getBoundingClientRect() || null)
                   : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
                 transition: 'transform 0.1s ease-out, box-shadow 0.3s ease-out, background 0.3s ease-out',
                 willChange: 'transform'

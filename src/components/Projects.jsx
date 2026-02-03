@@ -6,8 +6,8 @@ import { useSectionAnimation } from '../hooks/useSectionAnimation';
 
 const Projects = () => {
   const { ref: sectionRef, isVisible } = useSectionAnimation({ threshold: 0.1 });
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const scrollContainerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -21,14 +21,14 @@ const Projects = () => {
   const projectColors = ['text-green-600', 'text-orange-600', 'text-red-600', 'text-blue-600', 'text-purple-600'];
   const projectGradients = ['from-green-100 to-emerald-100', 'from-orange-100 to-red-100', 'from-red-100 to-orange-100', 'from-blue-100 to-cyan-100', 'from-purple-100 to-pink-100'];
 
-  const handleProjectClick = useCallback((link: string | undefined, title: string) => {
+  const handleProjectClick = useCallback((link, title) => {
     if (link) {
       trackExternalLink(`Project: ${title}`);
       window.open(link, '_blank');
     }
   }, []);
 
-  const handleMouseEnter = useCallback((index: number) => {
+  const handleMouseEnter = useCallback((index) => {
     setHoveredCard(index);
   }, []);
 
@@ -60,7 +60,7 @@ const Projects = () => {
     }
   }, [checkScrollButtons]);
 
-  const scroll = useCallback((direction: 'left' | 'right') => {
+  const scroll = useCallback((direction) => {
     const container = scrollContainerRef.current;
     if (container) {
       const cardWidth = window.innerWidth < 768 ? 280 : 420;

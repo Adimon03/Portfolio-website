@@ -30,11 +30,11 @@ const ScrollToTop = () => {
     const startTime = performance.now();
     
     // Lighter easing for snappier feel
-    const easeInOutQuad = (t: number): number => {
+    const easeInOutQuad = (t) => {
       return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
     };
     
-    const animateScroll = (currentTime: number) => {
+    const animateScroll = (currentTime) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const easeProgress = easeInOutQuad(progress);

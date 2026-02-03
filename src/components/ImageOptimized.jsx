@@ -1,16 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 
-interface ImageOptimizedProps {
-  src: string;
-  alt: string;
-  className?: string;
-  loading?: 'lazy' | 'eager';
-  onClick?: () => void;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
-  tabIndex?: number;
-  role?: string;
-}
-
 const ImageOptimized = ({
   src,
   alt,
@@ -20,10 +9,10 @@ const ImageOptimized = ({
   onKeyDown,
   tabIndex,
   role,
-}: ImageOptimizedProps) => {
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const imgRef = useRef(null);
 
   useEffect(() => {
     if (!imgRef.current) return;

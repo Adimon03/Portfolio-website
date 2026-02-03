@@ -1,14 +1,7 @@
 import { useEffect } from 'react';
 import { portfolioConfig } from '../config/portfolio';
 
-interface SEOProps {
-  title?: string;
-  description?: string;
-  image?: string;
-  url?: string;
-}
-
-const SEO = ({ title, description, image, url }: SEOProps) => {
+const SEO = ({ title, description, image, url }) => {
   const siteTitle = title || portfolioConfig.seo.title;
   const siteDescription = description || portfolioConfig.seo.description;
   const siteImage = image || portfolioConfig.seo.ogImage;
@@ -19,7 +12,7 @@ const SEO = ({ title, description, image, url }: SEOProps) => {
     document.title = siteTitle;
 
     // Update or create meta tags
-    const updateMetaTag = (name: string, content: string, isProperty = false) => {
+    const updateMetaTag = (name, content, isProperty = false) => {
       const attribute = isProperty ? 'property' : 'name';
       let element = document.querySelector(`meta[${attribute}="${name}"]`);
       

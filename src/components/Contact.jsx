@@ -11,7 +11,7 @@ const Contact = () => {
   const { ref: sectionRef, isVisible } = useSectionAnimation({ threshold: 0.1 });
   const scroll3D = useScroll3D('contact');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState('idle');
 
   useEffect(() => {
     if (isVisible) {
@@ -19,7 +19,7 @@ const Contact = () => {
     }
   }, [isVisible]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
@@ -71,7 +71,7 @@ const Contact = () => {
         setSubmitStatus('error');
         playErrorSound();
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Form submission error:', error);
       console.error('Error details:', error.text || error.message);
       setSubmitStatus('error');
@@ -81,7 +81,7 @@ const Contact = () => {
     }
   };
 
-  const handleContactClick = (label: string) => {
+  const handleContactClick = (label) => {
     trackExternalLink(`Contact: ${label}`);
   };
 

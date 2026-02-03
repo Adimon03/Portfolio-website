@@ -6,7 +6,7 @@ import { useScroll3D } from '../hooks/useScroll3D';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
   const scroll3D = useScroll3D('about');
 
   useEffect(() => {
