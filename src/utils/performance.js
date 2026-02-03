@@ -5,7 +5,7 @@ export const measurePerformance = () => {
 
   window.addEventListener('load', () => {
     // Get navigation timing
-    const perfData = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+    const perfData = performance.getEntriesByType('navigation')[0];
     
     if (perfData) {
       const metrics = {
@@ -36,7 +36,7 @@ export const measurePerformance = () => {
     }
 
     // Get resource timing
-    const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+    const resources = performance.getEntriesByType('resource');
     const largeResources = resources.filter(r => r.transferSize > 100000);
     
     if (largeResources.length > 0) {
@@ -63,7 +63,7 @@ export const measureWebVitals = () => {
   const observeLCP = () => {
     const observer = new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      const lastEntry = entries[entries.length - 1] as any;
+      const lastEntry = entries[entries.length - 1];
       console.log('🎨 LCP:', lastEntry.renderTime || lastEntry.loadTime, 'ms');
     });
     observer.observe({ entryTypes: ['largest-contentful-paint'] });
@@ -73,7 +73,7 @@ export const measureWebVitals = () => {
   const observeFID = () => {
     const observer = new PerformanceObserver((list) => {
       const entries = list.getEntries();
-      entries.forEach((entry: any) => {
+      entries.forEach((entry) => {
         console.log('⚡ FID:', entry.processingStart - entry.startTime, 'ms');
       });
     });
@@ -85,8 +85,8 @@ export const measureWebVitals = () => {
     let clsScore = 0;
     const observer = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
-        if (!(entry as any).hadRecentInput) {
-          clsScore += (entry as any).value;
+        if (!entry.hadRecentInput) {
+          clsScore += entry.value;
         }
       }
       console.log('📐 CLS:', clsScore.toFixed(4));
@@ -107,7 +107,7 @@ export const measureWebVitals = () => {
 export const monitorMemory = () => {
   if (typeof window === 'undefined') return;
   
-  const memory = (performance as any).memory;
+  const memory = performance.memory;
   if (memory) {
     setInterval(() => {
       const used = (memory.usedJSHeapSize / 1048576).toFixed(2);

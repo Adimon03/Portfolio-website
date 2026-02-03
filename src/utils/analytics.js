@@ -13,7 +13,7 @@ export const initGA = () => {
   document.head.appendChild(script);
 
   window.dataLayer = window.dataLayer || [];
-  function gtag(...args: any[]) {
+  function gtag(...args) {
     window.dataLayer.push(args);
   }
   gtag('js', new Date());
@@ -23,7 +23,7 @@ export const initGA = () => {
 };
 
 // Track page views
-export const trackPageView = (url: string) => {
+export const trackPageView = (url) => {
   if (typeof window === 'undefined' || !GA_TRACKING_ID) return;
   
   window.gtag?.('config', GA_TRACKING_ID, {
@@ -32,7 +32,7 @@ export const trackPageView = (url: string) => {
 };
 
 // Track custom events
-export const trackEvent = (action: string, category: string, label?: string, value?: number) => {
+export const trackEvent = (action, category, label, value) => {
   if (typeof window === 'undefined' || !GA_TRACKING_ID) return;
 
   window.gtag?.('event', action, {
@@ -43,34 +43,26 @@ export const trackEvent = (action: string, category: string, label?: string, val
 };
 
 // Track button clicks
-export const trackButtonClick = (buttonName: string) => {
+export const trackButtonClick = (buttonName) => {
   trackEvent('click', 'Button', buttonName);
 };
 
 // Track external link clicks
-export const trackExternalLink = (url: string) => {
+export const trackExternalLink = (url) => {
   trackEvent('click', 'External Link', url);
 };
 
 // Track downloads
-export const trackDownload = (fileName: string) => {
+export const trackDownload = (fileName) => {
   trackEvent('download', 'File', fileName);
 };
 
 // Track form submissions
-export const trackFormSubmit = (formName: string) => {
+export const trackFormSubmit = (formName) => {
   trackEvent('submit', 'Form', formName);
 };
 
 // Track section views
-export const trackSectionView = (sectionName: string) => {
+export const trackSectionView = (sectionName) => {
   trackEvent('view', 'Section', sectionName);
 };
-
-// Extend Window interface for TypeScript
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag?: (...args: any[]) => void;
-  }
-}

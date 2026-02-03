@@ -3,10 +3,10 @@
 export const playSendSound = () => {
   try {
     // Create an AudioContext
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     
     // Messenger notification sound - characteristic "pop" with two tones
-    const playTone = (frequency: number, startTime: number, duration: number, volume: number) => {
+    const playTone = (frequency, startTime, duration, volume) => {
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
       
@@ -40,7 +40,7 @@ export const playSendSound = () => {
 
 export const playErrorSound = () => {
   try {
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();

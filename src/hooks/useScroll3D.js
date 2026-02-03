@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useScroll3D = (sectionId: string) => {
+export const useScroll3D = (sectionId) => {
   const [scrollData, setScrollData] = useState({
     progress: 0,
     isInView: false,

@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-interface UseSectionAnimationOptions {
-  threshold?: number;
-  rootMargin?: string;
-  triggerOnce?: boolean;
-}
-
-export const useSectionAnimation = (options: UseSectionAnimationOptions = {}) => {
+export const useSectionAnimation = (options = {}) => {
   const {
     threshold = 0.15,
     rootMargin = '0px 0px -100px 0px',
@@ -14,7 +8,7 @@ export const useSectionAnimation = (options: UseSectionAnimationOptions = {}) =>
   } = options;
 
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef(null);
 
   useEffect(() => {
     const element = ref.current;
@@ -50,8 +44,8 @@ export const useSectionAnimation = (options: UseSectionAnimationOptions = {}) =>
 };
 
 // Hook for staggered children animations
-export const useStaggerAnimation = (itemCount: number, delay: number = 100) => {
-  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
+export const useStaggerAnimation = (itemCount, delay = 100) => {
+  const [visibleItems, setVisibleItems] = useState(new Set());
   const { ref, isVisible } = useSectionAnimation();
 
   useEffect(() => {
