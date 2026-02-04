@@ -93,6 +93,18 @@ export const portfolioConfig = {
   
   projects: [
     {
+      title: 'Bank Loan Analytics Dashboard - SQL & Power BI Risk Assessment',
+      tags: ['Power BI', 'SQL Server', 'Data Analysis', 'Risk Assessment', 'KPI Dashboard', 'Financial Analytics'],
+      description: [
+        'End-to-end bank loan analytics project analyzing loan performance, repayment behavior, and credit risk assessment',
+        'Built comprehensive SQL analysis calculating key business metrics including loan approval rates and default patterns',
+        'Created interactive 3-page Power BI dashboard with drill-through functionality for granular data exploration',
+        'Delivered actionable insights on good vs bad loans, monthly trends, and loan performance by demographics',
+      ],
+      link: 'https://github.com/Adimon03/Bank-Loan-Analytics-PowerBI-SQL',
+      image: '/bg-data-analytics.jpg',
+    },
+    {
       title: 'Business Intelligence Dashboard - Complete Data Analysis Pipeline',
       tags: ['Power BI', 'Python', 'SQL', 'Data Analysis', 'SQLite', 'Pandas', 'Matplotlib'],
       description: [

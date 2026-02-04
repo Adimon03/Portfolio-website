@@ -17,9 +17,9 @@ const Projects = () => {
     }
   }, [isVisible]);
 
-  const projectIcons = [BarChart3, Lock, BarChart3, Bot, Shield, Monitor];
-  const projectColors = ['text-green-600', 'text-orange-600', 'text-red-600', 'text-blue-600', 'text-purple-600'];
-  const projectGradients = ['from-green-100 to-emerald-100', 'from-orange-100 to-red-100', 'from-red-100 to-orange-100', 'from-blue-100 to-cyan-100', 'from-purple-100 to-pink-100'];
+  const projectIcons = [BarChart3, BarChart3, Lock, BarChart3, Bot, Shield, Monitor];
+  const projectColors = ['text-blue-600', 'text-orange-600', 'text-green-600', 'text-orange-600', 'text-red-600', 'text-blue-600', 'text-purple-600'];
+  const projectGradients = ['from-blue-100 to-cyan-100', 'from-orange-100 to-red-100', 'from-green-100 to-emerald-100', 'from-orange-100 to-red-100', 'from-red-100 to-orange-100', 'from-blue-100 to-cyan-100', 'from-purple-100 to-pink-100'];
 
   const handleProjectClick = useCallback((link, title) => {
     if (link) {
