@@ -8,7 +8,7 @@ export const portfolioConfig = {
     location: 'VIT Bhopal University',
     graduation: 'September 2026',
     image: '/new_pfp.webp',
-    resumeUrl: '/Resume_adi_new.pdf', // Your resume in public folder
+    resumeUrl: '/Resume_Data_Analysis_adi.pdf', // Your updated resume in public folder
   },
   
   social: {
